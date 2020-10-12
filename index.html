@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div id="app">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 py-5">
+        <div>
+          <table class="mx-auto">
+            <tbody>
+              <tr v-for="idxr, r in rows">
+                <td v-for="idxc, c in cols" class="pl-2" style="width: 50px;">
+                  <div @click="onSeatSelected(idxr, idxc)" v-if="!isAisle(idxr, idxc)" :class="classifier(idxr, idxc)" style="width: 30px; height: 30px; border: 1px solid black;"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-4 pt-3">
+        <div class="card" v-show="selectedSeat !=null" style="display: none;">
+          <div class="card-header">Properties</div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li @click="changeSeatStatus('RA')" class="list-group-item" :class="seatStatus('RA')">
+                <div class="float-left bg-white" style="width: 25px;"><div class="cls-ra" style="width: 30px; height: 30px; border: 1px solid black;"></div></div>
+                <span class="px-3">Available</span>
+              </li>
+              <li @click="changeSeatStatus('RB')" class="list-group-item" :class="seatStatus('RB')">
+                <div class="float-left" style="width: 25px;"><div class="cls-rb" style="width: 30px; height: 30px; border: 1px solid black;"></div></div>
+                <span class="px-3">Booked</span>
+              </li>
+              <li @click="changeSeatStatus('FA')" class="list-group-item" :class="seatStatus('FA')">
+                <div class="float-left" style="width: 25px;"><div class="cls-fa" style="width: 30px; height: 30px; border: 1px solid black;"></div></div>
+                <span class="px-3">Reserve for Female</span>
+              </li>
+              <li @click="changeSeatStatus('FB')" class="list-group-item" :class="seatStatus('FB')">
+                <div class="float-left" style="width: 25px;"><div class="cls-fb" style="width: 30px; height: 30px; border: 1px solid black;"></div></div>
+                <span class="px-3">Reserve for Female - Booked</span>
+              </li>
+              <li @click="changeSeatStatus('MA')" class="list-group-item" :class="seatStatus('MA')">
+                <div class="float-left" style="width: 25px;"><div class="cls-ma" style="width: 30px; height: 30px; border: 1px solid black;"></div></div>
+                <span class="px-3">Reserve for Male</span>
+              </li>
+              <li @click="changeSeatStatus('MB')" class="list-group-item" :class="seatStatus('MB')">
+                <div class="float-left" style="width: 25px;"><div class="cls-mb" style="width: 30px; height: 30px; border: 1px solid black;"></div></div>
+                <span class="px-3">Reserve for Male - Booked</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+  
+</body>
+</html>
+
